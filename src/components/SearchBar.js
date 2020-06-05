@@ -10,9 +10,9 @@ export default class SearchBar extends Component
         this.state =
         {
             prevSearch: "Enter a topic to search for",
-            hasSearched: false,
             isRandom: false,
-            isTrending: true
+            isTrending: true,
+            isRegular: false
         }
     }
 
@@ -21,8 +21,8 @@ export default class SearchBar extends Component
         // Prevent browser reload/refresh
         event.preventDefault();
 
-        if(event.target.id === "random") this.setState({ isRandom: true, isTrending: false });
-        else if(event.target.id === "trending") this.setState({ isRandom: false, isTrending: true });
+        if(event.target.id === "random") this.setState({ isRandom: true, isTrending: false, isRegular: false });
+        else if(event.target.id === "trending") this.setState({ isRandom: false, isTrending: true, isRegular: false });
     }
 
     handleSubmit = (event) =>
@@ -32,10 +32,10 @@ export default class SearchBar extends Component
 
         this.setState(
         { 
-            prevSearch: event.target.searchbar.value, 
-            hasSearched: true,
+            prevSearch: event.target.searchbar.value,
             isRandom: false,
-            isTrending: false
+            isTrending: false,
+            isRegular: true
         });
         event.target.reset();
     }
@@ -44,17 +44,10 @@ export default class SearchBar extends Component
     {
 
         return (
-            this.state.hasSearched ?
             <section>
                 {this.getSearchBar()}
                 {this.getButtons()}
                 {this.getGifFetcher()}
-            </section>
-            :
-            <section>
-                {this.getSearchBar()}
-                {this.getButtons()}
-                <GifFetcher />
             </section>
         );
     }
@@ -83,9 +76,10 @@ export default class SearchBar extends Component
     {
         const isRandom = this.state.isRandom;
         const isTrending = this.state.isTrending;
+        const isRegular = this.state.isRegular;
 
-        if(isRandom && !isTrending) return <GifFetcher searchType="random" />
-        else if(!isRandom && isTrending) return <GifFetcher searchType="trending" />
-        else if(!isRandom && !isTrending) return <GifFetcher searchTerm={this.state.prevSearch} searchType="regular" />
+        if(isRandom && !isTrending && !isRegular) return <GifFetcher searchType="random" />
+        else if(!isRandom && isTrending && !isRegular) return <GifFetcher searchType="trending" />
+        else if(!isRandom && !isTrending && isRegular) return <GifFetcher searchTerm={this.state.prevSearch} searchType="regular" />
     }
 }
