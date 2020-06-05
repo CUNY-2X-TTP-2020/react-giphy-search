@@ -55,8 +55,12 @@ export default class GifFetcher extends Component
             axios.get(url, { params: { limit: 15 }})
             .then((response) =>
             {
-                const data = response.data.data;
+                let data = [];
+                
+                if(searchType.localeCompare("random") === 0) data[0] = response.data.data;
+                else data = response.data.data;
 
+                console.log(data);
                 this.setState({ searchTerm, searchType, data, isFound: true });
             })
             .catch((error) => 
