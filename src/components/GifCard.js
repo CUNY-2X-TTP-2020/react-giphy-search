@@ -17,12 +17,11 @@ export default class GifCard extends Component
     render()
     {
         let props = this.props;
-        const key = props.key;
         const gif = props.gif;
         const title = props.title;
 
         return (
-            <section key={key}>
+            <section key={this.state.key}>
                 <img src={gif} alt={title} width="400" />
                 <p><strong>{title}</strong></p>
             </section>
