@@ -13,7 +13,11 @@ export default class SearchBar extends Component
 
     handleSubmit = (event) =>
     {
+        // Prevent browser reload/refresh
+        event.preventDefault();
 
+        this.setState({ prevSearch: event.target.searchbar.value })
+        event.target.reset();
     }
 
     render()
