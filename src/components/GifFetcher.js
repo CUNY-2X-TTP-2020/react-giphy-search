@@ -50,7 +50,7 @@ export default class GifFetcher extends Component
 
             if(searchType.localeCompare("regular") === 0) url = url.concat(`search?q=${searchTerm}&api_key=${API_KEY}`);
             else if(searchType.localeCompare("trending") === 0) url = url.concat(`trending?api_key=${API_KEY}`);
-            else url = url.concat(`random?api_key${API_KEY}`);
+            else url = url.concat(`random?api_key=${API_KEY}`);
             
             axios.get(url, { params: { limit: 15 }})
             .then((response) =>
