@@ -21,9 +21,9 @@ export default class GifCard extends Component
         const title = props.title;
 
         return (
-            <section key={this.state.key}>
-                <img src={gif} alt={title} width="400" />
-                <p><strong>{title}</strong></p>
+            <section className="gif-card" key={this.state.key}>
+                <p className="gif-card-title"><strong>{title}</strong></p>
+                <img className="gif-card-img" src={gif} alt={title} width="400" />
             </section>
         );
     }
