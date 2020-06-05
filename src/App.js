@@ -6,7 +6,7 @@ function App()
     return (
         <div className="App">
             <header className="App-header">
-                
+                <h1>Giphy Search</h1>
             </header>
         </div>
     );
