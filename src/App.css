@@ -106,7 +106,7 @@ button:focus
 .gif-card-title
 {
     background-color: #1a548f;
-    border-radius: 25px;
+    border-radius: 25px 25px 0 0;
     padding: 1rem;
 }
 
