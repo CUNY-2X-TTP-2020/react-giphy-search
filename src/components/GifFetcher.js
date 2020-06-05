@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import axios from 'axios';
 
+import GifCard from './GifCard';
+
 export default class GifFetcher extends Component
 {
     constructor(props)
@@ -12,7 +14,8 @@ export default class GifFetcher extends Component
         {
             searchTerm: props.searchTerm,
             searchType: props.searchType,
-            data: []
+            data: [],
+            isFound: false
         }
     }
 
@@ -24,20 +27,45 @@ export default class GifFetcher extends Component
         axios.get(url, { params: { limit: 20 }})
         .then((response) =>
         {
-            const data = response.data;
-            console.log(data);
-            this.setState({ searchTerm: "", searchType: "trending", data });
+            const data = response.data.data;
+
+            this.setState({ searchTerm: "", searchType: "trending", data, isFound: true });
         })
-        .catch((error) => console.log(error));
+        .catch((error) => 
+        {
+            console.log(error);
+            this.setState({ data: [], isFound: false });
+        });
     }
 
     render()
     {
         return (
+            this.state.isFound ?
             <section>
-                <div></div>
+                {this.generateGifCards(this.state.data)}
             </section>
+            : <p>No results found</p>
         );
+    }
+
+    generateGifCards(data)
+    {
+        let cards = [];
+
+        data.forEach((element, index) =>
+        {
+            const gif = element.images.original.url;
+            const title = element.title;
+
+            cards.push(<GifCard 
+                key={index.toString()}
+                gif={gif}
+                title={title}    
+            />);
+        });
+
+        return cards;
     }
 }
 
