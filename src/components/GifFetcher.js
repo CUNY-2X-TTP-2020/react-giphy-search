@@ -24,7 +24,7 @@ export default class GifFetcher extends Component
         const API_KEY = process.env.REACT_APP_API_KEY;
         const url = `http://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`;
 
-        axios.get(url, { params: { limit: 10 }})
+        axios.get(url, { params: { limit: 15 }})
         .then((response) =>
         {
             const data = response.data.data;
@@ -75,7 +75,7 @@ export default class GifFetcher extends Component
         return (
             this.state.isFound ?
             <section>
-                <h3>{this.state.searchType.toUpperCase()}</h3>
+                <h3 className="gif-title">{this.state.searchType.toUpperCase()}</h3>
                 {this.generateGifCards(this.state.data)}
             </section>
             : <p>No results found</p>
