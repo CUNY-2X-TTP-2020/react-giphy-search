@@ -14,3 +14,20 @@
     font-size: calc(10px + 2vmin);
     color: white;
 }
+
+/* Scroll Bar */
+
+body::-webkit-scrollbar
+{
+    width: 0.35em;
+}
+
+body::-webkit-scrollbar-track
+{
+    background: #282c34;
+}
+
+body::-webkit-scrollbar-thumb
+{
+    background: darkslategrey;
+}
