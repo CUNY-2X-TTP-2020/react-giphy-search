@@ -24,7 +24,7 @@ export default class GifFetcher extends Component
         const API_KEY = process.env.REACT_APP_API_KEY;
         const url = `http://api.giphy.com/v1/gifs/trending?api_key=${API_KEY}`;
 
-        axios.get(url, { params: { limit: 20 }})
+        axios.get(url, { params: { limit: 10 }})
         .then((response) =>
         {
             const data = response.data.data;
@@ -40,21 +40,19 @@ export default class GifFetcher extends Component
 
     componentDidUpdate(prevProps)
     {
-        if(this.props.searchTerm !== prevProps.searchTerm)
+        const API_KEY = process.env.REACT_APP_API_KEY;
+        const searchTerm = this.props.searchTerm;
+        const searchType = this.props.searchType;
+
+        if(searchTerm !== prevProps.searchTerm)
         {
-            const API_KEY = process.env.REACT_APP_API_KEY;
-            const searchTerm = this.props.searchTerm;
-            const searchType = this.props.searchType;
             let url = `http://api.giphy.com/v1/gifs/`;
 
-            if(this.state.searchType !== searchType)
-            {
-                if(searchType === "regular") url.concat(`search?q=${searchTerm}&api_key=${API_KEY}`);
-                else if(searchType === "trending") url.concat(`trending?api_key=${API_KEY}`);
-                else url.concat(`random?api_key${API_KEY}`);
-            }
+            if(searchType.localeCompare("regular") === 0) url = url.concat(`search?q=${searchTerm}&api_key=${API_KEY}`);
+            else if(searchType.localeCompare("trending") === 0) url = url.concat(`trending?api_key=${API_KEY}`);
+            else url = url.concat(`random?api_key${API_KEY}`);
             
-            axios.get(url, { params: { limit: 20 }})
+            axios.get(url, { params: { limit: 25 }})
             .then((response) =>
             {
                 const data = response.data.data;

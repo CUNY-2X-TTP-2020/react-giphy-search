@@ -23,7 +23,7 @@ export default class GifCard extends Component
 
         return (
             <section key={key}>
-                <img src={gif} width="400" />
+                <img src={gif} alt={title} width="400" />
                 <p><strong>{title}</strong></p>
             </section>
         );
@@ -32,7 +32,7 @@ export default class GifCard extends Component
 
 GifCard.propTypes =
 {
-    key: PropTypes.string.isRequired,
+    key: PropTypes.string,
     gif: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired
 }
