@@ -83,6 +83,15 @@ button:focus
     outline: none;
 }
 
+/* Title of Gif Section */
+
+.gif-title
+{
+    max-width: 320px;
+    margin: 0 auto 2rem auto;
+    border-bottom: 0.1rem solid white;
+}
+
 /* Gif Card */
 
 .gif-card

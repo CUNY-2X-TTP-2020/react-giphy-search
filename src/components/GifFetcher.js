@@ -75,7 +75,7 @@ export default class GifFetcher extends Component
         return (
             this.state.isFound ?
             <section>
-                <h3>{this.state.searchType.toUpperCase()}</h3>
+                <h3 className="gif-title">{this.state.searchType.toUpperCase()}</h3>
                 {this.generateGifCards(this.state.data)}
             </section>
             : <p>No results found</p>
