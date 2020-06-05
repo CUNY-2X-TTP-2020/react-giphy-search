@@ -10,6 +10,7 @@ export default class SearchBar extends Component
         this.state =
         {
             prevSearch: "Enter a topic to search for",
+            hasSearched: false
         }
     }
 
@@ -18,19 +19,28 @@ export default class SearchBar extends Component
         // Prevent browser reload/refresh
         event.preventDefault();
 
-        this.setState({ prevSearch: event.target.searchbar.value })
+        this.setState({ prevSearch: event.target.searchbar.value, hasSearched: true })
         event.target.reset();
     }
 
     render()
     {
         return (
+            this.state.hasSearched ?
             <section>
                 <form onSubmit={this.handleSubmit}>
                     <div>Gif Search</div>
                     <input type="text" name="searchbar" id="searchbar" placeholder={this.state.prevSearch} />
-                    <GifFetcher />
                 </form>
+                <GifFetcher searchTerm={this.state.prevSearch} searchType="regular" />
+            </section>
+            :
+            <section>
+                <form onSubmit={this.handleSubmit}>
+                    <div>Gif Search</div>
+                    <input type="text" name="searchbar" id="searchbar" placeholder={this.state.prevSearch} />
+                </form>
+                <GifFetcher />
             </section>
         );
     }
