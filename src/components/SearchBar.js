@@ -5,6 +5,10 @@ export default class SearchBar extends Component
     constructor(props)
     {
         super(props);
+        this.state =
+        {
+            prevSearch: "Enter a topic to search for",
+        }
     }
 
     handleSubmit = (event) =>
@@ -18,7 +22,7 @@ export default class SearchBar extends Component
             <section>
                 <form onSubmit={this.handleSubmit}>
                     <div>Gif Search</div>
-                    <input type="text" name="searchbar" id="searchbar" />
+                    <input type="text" name="searchbar" id="searchbar" placeholder={this.state.prevSearch} />
                 </form>
             </section>
         );
