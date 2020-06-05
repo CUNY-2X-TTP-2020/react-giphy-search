@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import GifFetcher from './GifFetcher';
+
 export default class SearchBar extends Component
 {
     constructor(props)
@@ -27,6 +29,7 @@ export default class SearchBar extends Component
                 <form onSubmit={this.handleSubmit}>
                     <div>Gif Search</div>
                     <input type="text" name="searchbar" id="searchbar" placeholder={this.state.prevSearch} />
+                    <GifFetcher />
                 </form>
             </section>
         );
