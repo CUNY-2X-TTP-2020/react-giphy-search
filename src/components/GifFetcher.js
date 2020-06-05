@@ -44,7 +44,7 @@ export default class GifFetcher extends Component
         const searchTerm = this.props.searchTerm;
         const searchType = this.props.searchType;
 
-        if(searchTerm !== prevProps.searchTerm)
+        if(searchTerm !== prevProps.searchTerm || searchType !== prevProps.searchType)
         {
             let url = `http://api.giphy.com/v1/gifs/`;
 
@@ -60,7 +60,6 @@ export default class GifFetcher extends Component
                 if(searchType.localeCompare("random") === 0) data[0] = response.data.data;
                 else data = response.data.data;
 
-                console.log(data);
                 this.setState({ searchTerm, searchType, data, isFound: true });
             })
             .catch((error) => 
