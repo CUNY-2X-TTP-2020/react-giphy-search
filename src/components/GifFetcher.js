@@ -6,6 +6,12 @@ export default class GifFetcher extends Component
     constructor(props)
     {
         super(props);
+        this.state =
+        {
+            searchTerm: props.searchTerm,
+            searchType: props.searchType,
+            data: []
+        }
     }
 
     render()
@@ -16,4 +22,9 @@ export default class GifFetcher extends Component
             </section>
         );
     }
+}
+
+GifFetcher.propTypes =
+{
+    searchTerm: PropTypes.string
 }
